@@ -31,7 +31,24 @@
             <span>Usuários</span>
         </a>
     </li>
+    <hr class="sidebar-divider my-0">
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+            aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-database"></i>
+            <span>Estoque</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="">Cadastro de itens</a>
+                <a class="collapse-item" href="">Movimento de estoque</a>
+            </div>
+        </div>
+    </li>
+
     <hr class="sidebar-divider d-none d-md-block">
+
 
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
