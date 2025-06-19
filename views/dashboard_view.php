@@ -389,9 +389,9 @@ $usuario = $_SESSION['usuario'];
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <?php include 'modals/item_modal.php'; ?>
 
-    <?php include('../includes/scripts.php'); ?>
+
+
     <script src="../assets/js/custom_item.js"></script>
     <!-- Page level plugins -->
     <script src="../assets/vendor/chart.js/Chart.min.js"></script>
@@ -399,7 +399,8 @@ $usuario = $_SESSION['usuario'];
     <!-- Page level custom scripts -->
     <script src="../assets/js/demo/chart-area-demo.js"></script>
     <script src="../assets/js/demo/chart-pie-demo.js"></script>
-
+    <?php include('../includes/scripts.php'); ?>
+    <?php include 'modals/item_modal.php'; ?>
 </body>
 
 </html>
