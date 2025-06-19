@@ -41,7 +41,7 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="">Cadastro de itens</a>
+                <a class="collapse-item" href="" data-toggle="modal" data-target="#modalCadastroItem">Cadastro de itens</a>
                 <a class="collapse-item" href="">Movimento de estoque</a>
             </div>
         </div>
