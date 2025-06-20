@@ -3,6 +3,19 @@ session_start();
 require_once('../includes/session_auth.php');
 $usuario = $_SESSION['usuario'];
 ?>
+<?php if (isset($_SESSION['mensagem_sucesso'])): ?>
+    <div class="alert alert-success">
+        <?= $_SESSION['mensagem_sucesso'];
+        unset($_SESSION['mensagem_sucesso']); ?>
+    </div>
+<?php endif; ?>
+
+<?php if (isset($_SESSION['mensagem_erro'])): ?>
+    <div class="alert alert-danger">
+        <?= $_SESSION['mensagem_erro'];
+        unset($_SESSION['mensagem_erro']); ?>
+    </div>
+<?php endif; ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
