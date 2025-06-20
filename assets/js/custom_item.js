@@ -1,18 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("formCadastroItem");
+  const alertBox = document.getElementById("alertMessage");
 
   if (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-
-      const nome = document.getElementById("nome").value.trim();
-      const grupo_id = document.getElementById("grupo_id").value;
-      const unidade_id = document.getElementById("unidade_id").value;
-
-      if (!nome || !grupo_id || !unidade_id) {
-        alert("Por favor, preencha todos os campos.");
-        return;
-      }
+      alertBox.classList.add("d-none");
+      alertBox.innerHTML = "";
 
       const formData = new FormData(form);
 
@@ -20,20 +14,27 @@ document.addEventListener("DOMContentLoaded", function () {
         method: "POST",
         body: formData,
       })
-        .then((response) => response.json())
+        .then((res) => res.json())
         .then((data) => {
           if (data.success) {
-            alert(data.message);
+            alertBox.className = "alert alert-success";
+            alertBox.innerText = data.message;
             form.reset();
-            $("#modalCadastroItem").modal("hide");
-            location.reload();
+
+            setTimeout(() => {
+              $("#modalCadastroItem").modal("hide");
+              alertBox.classList.add("d-none");
+            }, 2000);
           } else {
-            alert("Erro: " + data.message);
+            alertBox.className = "alert alert-danger";
+            alertBox.innerText = data.message;
           }
         })
-        .catch((error) => {
-          console.error("Erro:", error);
-          alert("Erro inesperado no envio.");
+        .catch((err) => {
+          console.error(err);
+          alertBox.className = "alert alert-danger";
+          alertBox.innerText = "Erro ao conectar com o servidor.";
+          alertBox.classList.remove("d-none");
         });
     });
   }

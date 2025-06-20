@@ -11,6 +11,7 @@
                 </div>
 
                 <div class="modal-body">
+                    <div id="alertMessage" class="alert d-none" role="alert"></div>
                     <div class="form-group">
                         <label for="nome">Nome do item</label>
                         <input type="text" class="form-control" name="nome" id="nome" required>
