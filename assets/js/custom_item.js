@@ -1,41 +1,26 @@
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("formCadastroItem");
-  const alertBox = document.getElementById("alertMessage");
+  const mensagem = document.getElementById("mensagem");
 
-  if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      alertBox.classList.add("d-none");
-      alertBox.innerHTML = "";
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
 
-      const formData = new FormData(form);
-
-      fetch("../actions/item_register.php", {
-        method: "POST",
-        body: formData,
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.success) {
-            alertBox.className = "alert alert-success";
-            alertBox.innerText = data.message;
-            form.reset();
-
-            setTimeout(() => {
-              $("#modalCadastroItem").modal("hide");
-              alertBox.classList.add("d-none");
-            }, 2000);
-          } else {
-            alertBox.className = "alert alert-danger";
-            alertBox.innerText = data.message;
-          }
-        })
-        .catch((err) => {
-          console.error(err);
-          alertBox.className = "alert alert-danger";
-          alertBox.innerText = "Erro ao conectar com o servidor.";
-          alertBox.classList.remove("d-none");
-        });
+    const formData = new FormData(form);
+    const response = await fetch("../actions/item_register.php", {
+      method: "POST",
+      body: formData,
     });
-  }
+
+    const result = await response.json();
+    mensagem.classList.remove("d-none", "alert-danger", "alert-success");
+
+    if (result.success) {
+      mensagem.classList.add("alert-success");
+      mensagem.innerText = result.message;
+      form.reset();
+    } else {
+      mensagem.classList.add("alert-danger");
+      mensagem.innerText = result.message;
+    }
+  });
 });
