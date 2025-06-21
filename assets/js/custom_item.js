@@ -1,26 +1,22 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("formCadastroItem");
-  const mensagem = document.getElementById("mensagem");
+$("#formCadastroItem").on("submit", function (e) {
+  e.preventDefault();
 
-  form.addEventListener("submit", async function (e) {
-    e.preventDefault();
+  const formData = $(this).serialize();
 
-    const formData = new FormData(form);
-    const response = await fetch("../actions/item_register.php", {
-      method: "POST",
-      body: formData,
-    });
+  $.post(
+    "../actions/item_register.php",
+    formData,
+    function (response) {
+      $("#alertContainer").html(`
+            <div class="alert alert-${response.status}" role="alert">
+                ${response.message}
+            </div>
+        `);
 
-    const result = await response.json();
-    mensagem.classList.remove("d-none", "alert-danger", "alert-success");
-
-    if (result.success) {
-      mensagem.classList.add("alert-success");
-      mensagem.innerText = result.message;
-      form.reset();
-    } else {
-      mensagem.classList.add("alert-danger");
-      mensagem.innerText = result.message;
-    }
-  });
+      if (response.status === "success") {
+        $("#formCadastroItem")[0].reset();
+      }
+    },
+    "json"
+  );
 });
