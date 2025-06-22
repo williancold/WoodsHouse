@@ -32,7 +32,7 @@ $usuarios = $pdo->query($sql)->fetchAll();
                 <?php include('../includes/topbar.php'); ?>
 
                 <div class="container-fluid">
-                    <h1 class="h3 mb-4 text-gray-800">Gerenciamento de Cargos</h1>
+                    <h1 class="h3 mb-4 text-gray-800">Gerenciamento de Cargos chat GPT4</h1>
 
 
                 </div>
